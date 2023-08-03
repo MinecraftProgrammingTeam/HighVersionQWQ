@@ -1,0 +1,8 @@
+name: HighVersionQWQ
+version: '${project.version}'
+main: top.mpt.huihui.highversionqwq.HighVersionQWQ
+api-version: '1.20'
+commands:
+  jointeam:
+    description: PVP插件 -- 加入队伍
+    usage: /jointeam Red/Blue
