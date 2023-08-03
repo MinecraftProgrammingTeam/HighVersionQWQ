@@ -11,4 +11,4 @@ When the game started, the `BossBar` of another team's player's health will be s
 
 When you beat the other person, you won the game.
 
-So far, we have only two teams and they are stick at Red & Blue, and the argument `<PlayerName>` does not support target selector like `@p、@s`. It will be fixed s∞n .
+So far, we have only two teams and they are sticked at Red & Blue, and the argument `<PlayerName>` does not support target selector like `@p、@s`. It will be fixed s∞n .
