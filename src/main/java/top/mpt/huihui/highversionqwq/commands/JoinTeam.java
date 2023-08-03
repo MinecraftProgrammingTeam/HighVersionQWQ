@@ -1,6 +1,8 @@
 package top.mpt.huihui.highversionqwq.commands;
 
+import net.md_5.bungee.api.chat.SelectorComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,6 +18,7 @@ import top.mpt.huihui.highversionqwq.utils.ItemUtils;
 import top.mpt.huihui.highversionqwq.utils.PlayerUtils;
 
 import java.util.Objects;
+import java.util.UUID;
 
 
 public class JoinTeam implements CommandExecutor {
@@ -25,24 +28,37 @@ public class JoinTeam implements CommandExecutor {
         // strings[0] == "Blue/Red"
         // strings[1] == "X_huihui/NameFlying"
         if (strings.length != 2){
-            PlayerUtils.send(commandSender, "#RED#格式错误");
+            PlayerUtils.send(commandSender, "#RED#格式错误! 用法：/jointeam red/blue <PlayerName>");
             return true;
         }
+        if (Bukkit.getPlayer(strings[1]) == null){
+            PlayerUtils.send(commandSender, "#RED#玩家不存在");
+        }
+        // 设置玩家
+        Player onJoinTeamPlayer = Objects.requireNonNull(Bukkit.getPlayer(strings[1]));
+        // 获取Team
         TeamExecuter teamExecuter = HighVersionQWQ.teamExecuter;
-        if (strings[0].equals("red") || strings[0].equals("Red")){
-            if (teamExecuter.getBluePlayer()!= null && teamExecuter.getBluePlayer().equals(Bukkit.getPlayer(strings[1]))){
+        // 如果玩家要加入Red队伍
+        if (strings[0].equalsIgnoreCase("red")){
+            if (teamExecuter.getBluePlayer()!= null && teamExecuter.getBluePlayer().equals(onJoinTeamPlayer)){
                 teamExecuter.removeBluePlayer();
             }
-            teamExecuter.JoinRed(Bukkit.getPlayer(strings[1]));
-            setItems(Objects.requireNonNull(Bukkit.getPlayer(strings[1])));
-            PlayerUtils.send(commandSender, commandSender.getName() + "#AQUA#加入队伍：#RED#Red #GREEN#成功");
-        } else if (strings[0].equals("blue") || strings[0].equals("Blue")){
-            if (teamExecuter.getRedPlayer() != null && teamExecuter.getRedPlayer().equals(Bukkit.getPlayer(strings[1]))){
+            // 让玩家加入红队
+            teamExecuter.JoinRed(onJoinTeamPlayer);
+            // 设置玩家背包
+            setItems(onJoinTeamPlayer);
+            // 给玩家发送消息
+            PlayerUtils.send(onJoinTeamPlayer, onJoinTeamPlayer.getName() + "#AQUA#加入队伍：#RED#Red #GREEN#成功");
+        } else if (strings[0].equalsIgnoreCase("blue")){
+            if (teamExecuter.getRedPlayer() != null && teamExecuter.getRedPlayer().equals(onJoinTeamPlayer)){
                 teamExecuter.removeRedPlayer();
             }
-            teamExecuter.JoinBlue(Bukkit.getPlayer(strings[1]));
-            setItems(Objects.requireNonNull(Bukkit.getPlayer(strings[1])));
-            PlayerUtils.send(commandSender, "#AQUA#加入队伍：#BLUE#Blue #GREEN#成功");
+            // 让玩家加入蓝队
+            teamExecuter.JoinBlue(onJoinTeamPlayer);
+            // 设置玩家背包
+            setItems(onJoinTeamPlayer);
+            // 给玩家发送消息
+            PlayerUtils.send(onJoinTeamPlayer, onJoinTeamPlayer.getName() + "#AQUA#加入队伍：#BLUE#Blue #GREEN#成功");
         }
         if (teamExecuter.getRedPlayer() != null && teamExecuter.getBluePlayer() != null){
             // 游戏开启
@@ -57,6 +73,11 @@ public class JoinTeam implements CommandExecutor {
     private void setItems(Player player){
         // 清空玩家背包
         player.getInventory().clear();
+        // 设置成生存模式
+        player.setGameMode(GameMode.SURVIVAL);
+        // 治疗玩家
+        player.setHealth(20.0);
+        player.setFoodLevel(20);
         // 初始化药水
         PotionEffect TArrowEff = new PotionEffect(
                 PotionEffectType.HARM,

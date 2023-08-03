@@ -28,10 +28,14 @@ public class TeamExecuter {
 
     public void removeRedPlayer() {
         RedPlayer.getInventory().clear();
+        RedPlayer.setHealth(20.0);
+        RedPlayer.setFoodLevel(20);
         RedPlayer = null;
     }
     public void removeBluePlayer() {
         BluePlayer.getInventory().clear();
+        BluePlayer.setHealth(20.0);
+        RedPlayer.setFoodLevel(20);
         BluePlayer = null;
     }
 

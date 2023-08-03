@@ -9,6 +9,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import top.mpt.huihui.highversionqwq.HighVersionQWQ;
 import top.mpt.huihui.highversionqwq.team.TeamExecuter;
 import top.mpt.huihui.highversionqwq.utils.ChatUtils;
+import top.mpt.huihui.highversionqwq.utils.LogUtils;
 import top.mpt.huihui.highversionqwq.utils.PlayerUtils;
 
 // 给玩家显示对面的血量BossBar
@@ -33,7 +34,7 @@ public class ShowBossBar {
                 RedBossBar.setProgress(RedPlayer.getHealth() / 100 / 0.2);
                 BlueBossBar.setProgress(BluePlayer.getHealth() / 100 / 0.2);
                 if (!RedPlayer.isValid() || !BluePlayer.isValid()){
-                    ChatUtils.broadcast("BossBar移除成功");
+                    LogUtils.info("BossBar移除成功");
                     RedBossBar.removeAll();
                     BlueBossBar.removeAll();
                     cancel();
