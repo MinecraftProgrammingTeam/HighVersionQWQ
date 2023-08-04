@@ -7,6 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -17,6 +18,7 @@ import top.mpt.huihui.highversionqwq.team.TeamExecuter;
 import top.mpt.huihui.highversionqwq.utils.ItemUtils;
 import top.mpt.huihui.highversionqwq.utils.PlayerUtils;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -34,10 +36,34 @@ public class JoinTeam implements CommandExecutor {
         if (Bukkit.getPlayer(strings[1]) == null){
             PlayerUtils.send(commandSender, "#RED#玩家不存在");
         }
-        // 设置玩家
-        Player onJoinTeamPlayer = Objects.requireNonNull(Bukkit.getPlayer(strings[1]));
+        // 如果是目标选择器
+        // 定义玩家
+        Player onJoinTeamPlayer;
+        // 如果是目标选择器
+        if (strings[1].contains("@")){
+            List<Entity> selectEntities = Bukkit.selectEntities(commandSender, strings[1]);
+            // 判断格式
+            if (selectEntities.toArray().length != 1){
+                PlayerUtils.send(commandSender, "#RED#所给选择器目标不明确，请给一个目标明确的选择器。");
+                return true;
+            }
+            else if (selectEntities.get(0) instanceof Player){
+                onJoinTeamPlayer = (Player) selectEntities.get(0);
+            }
+            else {
+                PlayerUtils.send(commandSender, "#RED#请选择一个玩家，而不是一个生物或者其他乱七八走的东西。");
+                return true;
+            }
+        }
+        // 如果是玩家名
+        else {
+            // 设置玩家
+            onJoinTeamPlayer = Objects.requireNonNull(Bukkit.getPlayer(strings[1]));
+        }
         // 获取Team
         TeamExecuter teamExecuter = HighVersionQWQ.teamExecuter;
+        // 断言onJoinTeamPlayer不为null
+        assert onJoinTeamPlayer != null;
         // 如果玩家要加入Red队伍
         if (strings[0].equalsIgnoreCase("red")){
             if (teamExecuter.getBluePlayer()!= null && teamExecuter.getBluePlayer().equals(onJoinTeamPlayer)){
