@@ -15,8 +15,8 @@ import top.mpt.huihui.highversionqwq.utils.PlayerUtils;
 // 给玩家显示对面的血量BossBar
 public class ShowBossBar {
     private final TeamExecuter teamExecuter = HighVersionQWQ.teamExecuter;
-    private BossBar RedBossBar = null;
-    private BossBar BlueBossBar = null;
+    public BossBar RedBossBar = null;
+    public BossBar BlueBossBar = null;
 
     public void createBossBar(){
         // PlayerUtils.send(teamExecuter.getRedPlayer(), "#AQUA#check if it is null:" + HighVersionQWQ.instance);

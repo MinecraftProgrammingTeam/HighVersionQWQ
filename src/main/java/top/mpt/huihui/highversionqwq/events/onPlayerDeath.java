@@ -26,10 +26,10 @@ public class onPlayerDeath implements Listener {
             // 显示标题
             PlayerUtils.showTitle(onDeathPlayer, "#GRAY#别气馁，没准下次就赢了呢？", "");
             if (onDeathPlayer.equals(teamExecuter.getRedPlayer())) {
-                ChatUtils.broadcast("#GOLD#恭喜玩家：#AQUA#%s #GOLD#赢得了本次#GREEN#PVP比赛#GOLD#的胜利", teamExecuter.getBluePlayer());
+                ChatUtils.broadcast("#GOLD#恭喜玩家：#AQUA#%s #GOLD#赢得了本次#GREEN#PVP比赛#GOLD#的胜利", teamExecuter.getBluePlayer().getName());
                 PlayerUtils.showTitle(teamExecuter.getBluePlayer(), "#GREEN#恭喜您获得本场比赛的胜利！", "");
             } else {
-                ChatUtils.broadcast("#GOLD#恭喜玩家：#AQUA#%s #GOLD#赢得了本次#GREEN#PVP比赛#GOLD#的胜利", teamExecuter.getRedPlayer());
+                ChatUtils.broadcast("#GOLD#恭喜玩家：#AQUA#%s #GOLD#赢得了本次#GREEN#PVP比赛#GOLD#的胜利", teamExecuter.getRedPlayer().getName());
                 PlayerUtils.showTitle(teamExecuter.getRedPlayer(), "#GREEN#恭喜您获得本场比赛的胜利！", "");
             }
             // 清除队伍

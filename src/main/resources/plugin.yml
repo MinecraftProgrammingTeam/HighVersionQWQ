@@ -6,3 +6,6 @@ commands:
   jointeam:
     description: PVP插件 -- 加入队伍
     usage: /jointeam Red/Blue
+  clearbossbar:
+    description: PVP插件 -- 清空Boss栏(慎用)
+    usage: /clearbossbar if you are an operator
