@@ -17,7 +17,7 @@ public class LeaveTeam implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        if (strings[1].contains("@")){
+        if (strings.length != 0 && strings[0].contains("@")){
             List<Entity> selectEntities = Bukkit.selectEntities(commandSender, strings[1]);
             // 判断格式
             if (selectEntities.toArray().length != 1){

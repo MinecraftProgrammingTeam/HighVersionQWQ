@@ -111,12 +111,12 @@ public class JoinTeam implements CommandExecutor {
                 return true;
             }
             // 不同玩家加入，但游戏未开始
-            else if (teamExecuter.getRedPlayer() != null && !HighVersionQWQ.GameStart){
+            else if (teamExecuter.getBluePlayer() != null && !HighVersionQWQ.GameStart){
                 ChatUtils.broadcast("#BLUE#检测到有两个玩家试图加入蓝队，已清除原先的蓝队玩家，现在的蓝队玩家是：%s", onJoinTeamPlayer.getName());
                 teamExecuter.removeRedPlayer();
             }
             // 不同玩家加入同一支队伍，但游戏已开始
-            else if (teamExecuter.getRedPlayer() != null && HighVersionQWQ.GameStart){
+            else if (teamExecuter.getBluePlayer() != null && HighVersionQWQ.GameStart){
                 ChatUtils.broadcast("#BLUE#有一个玩家试图在游戏开始后加入队伍，已拒绝ta的请求，该玩家ID为：#AQUA#%s", onJoinTeamPlayer.getName());
                 teamExecuter.showAllTeamMember();
                 return true;

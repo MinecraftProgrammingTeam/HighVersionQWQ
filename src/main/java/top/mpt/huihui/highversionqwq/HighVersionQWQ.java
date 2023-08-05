@@ -26,6 +26,7 @@ public final class HighVersionQWQ extends JavaPlugin {
         Objects.requireNonNull(getCommand("clearbossbar")).setExecutor(new ClearBossbar());
         Objects.requireNonNull(getCommand("checkshenquan")).setExecutor(new CheckShenQuan());
         Objects.requireNonNull(getCommand("leaveteam")).setExecutor(new LeaveTeam());
+
         getServer().getPluginManager().registerEvents(new onPlayerDeath(), this);
         getServer().getPluginManager().registerEvents(new onCommandExecute(), this);
         getServer().getPluginManager().registerEvents(new onPlayerQuit(), this);

@@ -17,7 +17,6 @@ public class ShowBossBar {
     public BossBar BlueBossBar = null;
 
     public void createBossBar(){
-        // PlayerUtils.send(teamExecuter.getRedPlayer(), "#AQUA#check if it is null:" + HighVersionQWQ.instance);
         Player RedPlayer = teamExecuter.getRedPlayer();
         Player BluePlayer = teamExecuter.getBluePlayer();
         RedBossBar = Bukkit.createBossBar(RedPlayer.getName(), BarColor.RED, BarStyle.SEGMENTED_6);

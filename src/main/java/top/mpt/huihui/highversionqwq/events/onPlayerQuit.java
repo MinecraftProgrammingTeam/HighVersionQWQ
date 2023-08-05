@@ -14,28 +14,28 @@ public class onPlayerQuit implements Listener {
         Player player = event.getPlayer();
         if(!GameStart){
             if (teamExecuter.getRedPlayer() != null && teamExecuter.getRedPlayer().equals(player)){
-                ChatUtils.broadcast("#RED#红队#AQUA#玩家: %s 在比赛开始前陶艺了，已取消其比赛资格。");
+                ChatUtils.broadcast("#RED#红队#AQUA#玩家: %s 在比赛开始前陶艺了，已取消其比赛资格。"
+                , player.getName());
                 teamExecuter.removeRedPlayer();
-                event.setQuitMessage("陶艺小子LLL");
             }
             if (teamExecuter.getBluePlayer() != null && teamExecuter.getBluePlayer().equals(player)){
-                ChatUtils.broadcast("#BLUE#蓝队#AQUA#玩家: %s 在比赛开始前陶艺了，已取消其比赛资格。");
+                ChatUtils.broadcast("#BLUE#蓝队#AQUA#玩家: %s 在比赛开始前陶艺了，已取消其比赛资格。"
+                , player.getName());
                 teamExecuter.removeBluePlayer();
-                event.setQuitMessage("陶艺小子LLL");
             }
         }
         else {
             if (teamExecuter.getRedPlayer().equals(player)){
-                ChatUtils.broadcast("#RED#红队#AQUA#玩家: %s 在比赛开始后陶艺了，比赛被迫结束。");
+                ChatUtils.broadcast("#RED#红队#AQUA#玩家: %s 在比赛开始后陶艺了，比赛被迫结束。"
+                , player.getName());
                 teamExecuter.removeRedPlayer();
                 teamExecuter.removeBluePlayer();
-                event.setQuitMessage("陶艺小子LLL");
             }
             if (teamExecuter.getBluePlayer().equals(player)){
-                ChatUtils.broadcast("#BLUE#蓝队#AQUA#玩家: %s 在比赛开始后陶艺了，比赛被迫结束。");
+                ChatUtils.broadcast("#BLUE#蓝队#AQUA#玩家: %s 在比赛开始后陶艺了，比赛被迫结束。"
+                , player.getName());
                 teamExecuter.removeRedPlayer();
                 teamExecuter.removeBluePlayer();
-                event.setQuitMessage("陶艺小子LLL");
             }
         }
     }

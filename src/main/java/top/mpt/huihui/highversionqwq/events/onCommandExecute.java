@@ -4,8 +4,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.server.ServerCommandEvent;
 import top.mpt.huihui.highversionqwq.utils.ChatUtils;
-import top.mpt.huihui.highversionqwq.utils.PlayerUtils;
 
 import static top.mpt.huihui.highversionqwq.HighVersionQWQ.*;
 
@@ -27,6 +27,19 @@ public class onCommandExecute implements Listener {
                 event.setCancelled(true);
                 player.setHealth(1);
                 player.setFoodLevel(0);
+            }
+        }
+    }
+    @EventHandler
+    public void onServerExecuteCommand(ServerCommandEvent event){
+        if (GameStart){
+            if (event.getCommand().contains("@") || event.getCommand().contains("*") ||
+                    event.getCommand().contains("**") ||
+                    event.getCommand().contains(teamExecuter.getBluePlayer().getName()) ||
+                    event.getCommand().contains(teamExecuter.getRedPlayer().getName())
+            ){
+                event.getSender().sendMessage("请求被驳回，不允许场外助攻场内玩家！");
+                event.setCancelled(true);
             }
         }
     }

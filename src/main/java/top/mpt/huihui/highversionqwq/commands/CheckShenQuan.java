@@ -18,16 +18,21 @@ public class CheckShenQuan implements CommandExecutor {
             int countRed = checkPlayer(teamExecuter.getRedPlayer());
             int countBlue = checkPlayer(teamExecuter.getBluePlayer());
             if (countRed != 0){
-                ChatUtils.broadcast("#AQUA#经由玩家: %s 检测，#RED#红队#AQUA#玩家: %s 涉嫌作弊，犯下了 %d 项罪行，现给予处罚。"
-                , commandSender, teamExecuter.getRedPlayer(), countRed);
+                ChatUtils.broadcast("#AQUA#经由玩家: %s 检测，#RED#神权红队#AQUA#玩家: %s 涉嫌Bypass本插件，犯下了 %d 项罪行，现给予处罚。"
+                , commandSender.getName(), teamExecuter.getRedPlayer().getName(), countRed);
                 teamExecuter.getRedPlayer().setHealth(0.5);
+                teamExecuter.getRedPlayer().setFoodLevel(0);
                 teamExecuter.getRedPlayer().teleport(teamExecuter.getBluePlayer());
             }
             if (countBlue != 0){
-                ChatUtils.broadcast("#AQUA#经由玩家: %s 检测，#BLUE#蓝队#AQUA#玩家: %s 涉嫌作弊，犯下了 %d 项罪行，现给予处罚。"
-                , commandSender, teamExecuter.getBluePlayer(), countBlue);
+                ChatUtils.broadcast("#AQUA#经由玩家: %s 检测，#BLUE#神权蓝队#AQUA#玩家: %s 涉嫌Bypass本插件，犯下了 %d 项罪行，现给予处罚。"
+                , commandSender.getName(), teamExecuter.getBluePlayer().getName(), countBlue);
                 teamExecuter.getBluePlayer().setHealth(0.5);
+                teamExecuter.getBluePlayer().setFoodLevel(0);
                 teamExecuter.getBluePlayer().teleport(teamExecuter.getRedPlayer());
+            }
+            if (countRed == 0 && countBlue == 0){
+
             }
         }
         return true;
@@ -43,13 +48,15 @@ public class CheckShenQuan implements CommandExecutor {
             count++;
             player.getVehicle().removePassenger(player);
         }
-        if (player.getWalkSpeed() != 1.0){
+        if (player.getWalkSpeed() != 0.2F){
+            System.out.println(player.getWalkSpeed() + " != " + 0.2F);
             count++;
-            player.setWalkSpeed(1.0F);
+            player.setWalkSpeed(0.2F);
         }
-        if (player.getFlySpeed() != 1.0){
+        if (player.getFlySpeed() != 0.1F){
+            System.out.println(player.getFlySpeed() + " != " + 0.1F);
             count++;
-            player.setFlySpeed(1.0F);
+            player.setFlySpeed(0.1F);
         }
         if (player.getGameMode() != GameMode.SURVIVAL){
             count++;
