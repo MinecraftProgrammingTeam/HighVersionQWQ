@@ -1,6 +1,10 @@
 # HighVersionPVP
  A pvp plugin for higher version(1.20+)
 
+# 本项目使用Apache-2.0 License开源，附加条件：
+
+- 禁止商用
+
 # Usage
 
 使用命令`/jointeam Red/Blue <PlayerName>`以加入一个队伍
