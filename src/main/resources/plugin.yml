@@ -5,7 +5,13 @@ api-version: '1.20'
 commands:
   jointeam:
     description: PVP插件 -- 加入队伍
-    usage: /jointeam Red/Blue
+    usage: /jointeam Red/Blue <PlayerName>
   clearbossbar:
     description: PVP插件 -- 清空Boss栏(慎用)
     usage: /clearbossbar if you are an operator
+  checkshenquan:
+    description: PVP插件 -- 检查对面有没有神权
+    usage: /checkshenquan
+  leaveteam:
+    description: PVP插件 -- 离开队伍
+    usage: /leaveteam [PlayerName]

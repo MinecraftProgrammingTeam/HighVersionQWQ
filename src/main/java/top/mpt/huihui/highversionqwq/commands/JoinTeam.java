@@ -71,7 +71,7 @@ public class JoinTeam implements CommandExecutor {
             // 防止同一个玩家重复加入队伍
             if (teamExecuter.getRedPlayer() != null && teamExecuter.getRedPlayer().equals(onJoinTeamPlayer)){
                 ChatUtils.broadcast("#RED#红队队员试图重复加入队伍制造Bug，公开ta的ID：#AQUA#%s", onJoinTeamPlayer.getName());
-                showAllTeamMember();
+                teamExecuter.showAllTeamMember();
                 return true;
             }
             // 不同玩家加入，但游戏未开始
@@ -82,7 +82,7 @@ public class JoinTeam implements CommandExecutor {
             // 不同玩家加入同一支队伍，但游戏已开始
             else if (teamExecuter.getRedPlayer() != null && HighVersionQWQ.GameStart){
                 ChatUtils.broadcast("#RED#有一个玩家试图在游戏开始后加入队伍，已拒绝ta的请求，该玩家ID为：#AQUA#%s", onJoinTeamPlayer.getName());
-                showAllTeamMember();
+                teamExecuter.showAllTeamMember();
                 return true;
             }
             // 如果该玩家原先为蓝队队员，叛变为红队队员(游戏未开始)
@@ -93,7 +93,7 @@ public class JoinTeam implements CommandExecutor {
             // 如果该玩家原先为蓝队队员，叛变为红队队员(游戏已开始)
             else if (teamExecuter.getBluePlayer() != null && teamExecuter.getBluePlayer().equals(onJoinTeamPlayer)){
                 ChatUtils.broadcast("#RED#玩家：%s 试图从蓝队叛变至红队，游戏已经开始，无法执行该操作。", onJoinTeamPlayer.getName());
-                showAllTeamMember();
+                teamExecuter.showAllTeamMember();
                 return true;
             }
             // 让玩家加入红队
@@ -107,7 +107,7 @@ public class JoinTeam implements CommandExecutor {
             // 防止同一个玩家重复加入队伍
             if (teamExecuter.getBluePlayer() != null && teamExecuter.getBluePlayer().equals(onJoinTeamPlayer)){
                 ChatUtils.broadcast("#BLUE#蓝队队员试图重复加入队伍制造Bug，公开ta的ID：#AQUA#%s", onJoinTeamPlayer.getName());
-                showAllTeamMember();
+                teamExecuter.showAllTeamMember();
                 return true;
             }
             // 不同玩家加入，但游戏未开始
@@ -118,7 +118,7 @@ public class JoinTeam implements CommandExecutor {
             // 不同玩家加入同一支队伍，但游戏已开始
             else if (teamExecuter.getRedPlayer() != null && HighVersionQWQ.GameStart){
                 ChatUtils.broadcast("#BLUE#有一个玩家试图在游戏开始后加入队伍，已拒绝ta的请求，该玩家ID为：#AQUA#%s", onJoinTeamPlayer.getName());
-                showAllTeamMember();
+                teamExecuter.showAllTeamMember();
                 return true;
             }
             // 如果该玩家原先为红队队员，叛变为蓝队队员(游戏未开始)
@@ -129,7 +129,7 @@ public class JoinTeam implements CommandExecutor {
             // 如果该玩家原先为红队队员，叛变为蓝队队员(游戏已开始)
             else if (teamExecuter.getRedPlayer() != null && teamExecuter.getRedPlayer().equals(onJoinTeamPlayer)){
                 ChatUtils.broadcast("#GREEN#玩家：%s 试图从红队叛变至蓝队，游戏已经开始，无法执行该操作。", onJoinTeamPlayer.getName());
-                showAllTeamMember();
+                teamExecuter.showAllTeamMember();
                 return true;
             }
             // 让玩家加入蓝队
@@ -139,29 +139,18 @@ public class JoinTeam implements CommandExecutor {
             // 给玩家发送消息
             PlayerUtils.send(onJoinTeamPlayer, onJoinTeamPlayer.getName() + "#AQUA#加入队伍：#BLUE#Blue #GREEN#成功");
         }
-        showAllTeamMember();
+        teamExecuter.showAllTeamMember();
         if (teamExecuter.getRedPlayer() != null && teamExecuter.getBluePlayer() != null){
             // 游戏开启
             HighVersionQWQ.GameStart = true;
             // 发布提示
-            ChatUtils.broadcast("#AQUA#[PVP]游戏已开始！");
+            ChatUtils.broadcast("#AQUA#游戏已开始！");
             // 设置BossBar
             showBossBar.createBossBar();
         }
         return true;
     }
-    private void showAllTeamMember(){
-        if (teamExecuter.getRedPlayer() != null && teamExecuter.getBluePlayer() != null){
-            ChatUtils.broadcast("#RED#红队队员：%s, #BLUE#蓝队队员：%s", teamExecuter.getRedPlayer(), teamExecuter.getBluePlayer());
-        }
-        else if (teamExecuter.getRedPlayer() == null && teamExecuter.getBluePlayer() != null){
-            ChatUtils.broadcast("#RED#红队队员：未设定, #BLUE#蓝队队员：%s", teamExecuter.getBluePlayer());
-        }
-        else if (teamExecuter.getRedPlayer() != null && teamExecuter.getBluePlayer() == null){
-            ChatUtils.broadcast("#RED#红队队员：%s, #BLUE#蓝队队员：未设定", teamExecuter.getRedPlayer());
-        }
 
-    }
     private void setItems(Player player){
         // 清空玩家背包
         player.getInventory().clear();
