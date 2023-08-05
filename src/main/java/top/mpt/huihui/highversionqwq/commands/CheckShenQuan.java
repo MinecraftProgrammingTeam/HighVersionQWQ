@@ -32,7 +32,7 @@ public class CheckShenQuan implements CommandExecutor {
                 teamExecuter.getBluePlayer().teleport(teamExecuter.getRedPlayer());
             }
             if (countRed == 0 && countBlue == 0){
-
+                ChatUtils.broadcast("#AQUA#没有人是神权狗");
             }
         }
         return true;

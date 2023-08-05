@@ -30,12 +30,14 @@ public class onPlayerQuit implements Listener {
                 , player.getName());
                 teamExecuter.removeRedPlayer();
                 teamExecuter.removeBluePlayer();
+                GameStart = false;
             }
             if (teamExecuter.getBluePlayer().equals(player)){
                 ChatUtils.broadcast("#BLUE#蓝队#AQUA#玩家: %s 在比赛开始后陶艺了，比赛被迫结束。"
                 , player.getName());
                 teamExecuter.removeRedPlayer();
                 teamExecuter.removeBluePlayer();
+                GameStart = false;
             }
         }
     }
