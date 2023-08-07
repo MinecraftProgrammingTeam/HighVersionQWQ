@@ -6,6 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import top.mpt.huihui.highversionqwq.team.TeamExecuter;
 import top.mpt.huihui.highversionqwq.utils.ChatUtils;
 import top.mpt.huihui.highversionqwq.utils.PlayerUtils;
 
@@ -37,7 +38,7 @@ public class LeaveTeam implements CommandExecutor {
             return true;
         }
         if (GameStart){
-            if (commandSender.equals(teamExecuter.getBluePlayer())){
+            if (commandSender.equals(teamExecuter.getPlayer(TeamExecuter.Team.BLUE))){
                 ChatUtils.broadcast("#BLUE#蓝队#GREEN#玩家: %s 试图在比赛开始时离开队伍，已拒绝其请求。", command.getName());
                 return true;
             }
@@ -48,7 +49,7 @@ public class LeaveTeam implements CommandExecutor {
 
         }
         else {
-            if (commandSender.equals(teamExecuter.getBluePlayer())){
+            if (commandSender.equals(teamExecuter.getPlayer(TeamExecuter.Team.BLUE))){
                 ChatUtils.broadcast("#BLUE#蓝队#GREEN#玩家: %s 请求离开队伍，已认可其请求。", command.getName());
                 teamExecuter.removeBluePlayer();
                 teamExecuter.showAllTeamMember();

@@ -5,6 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import top.mpt.huihui.highversionqwq.team.TeamExecuter;
 import top.mpt.huihui.highversionqwq.utils.ChatUtils;
 
 import static top.mpt.huihui.highversionqwq.HighVersionQWQ.GameStart;
@@ -15,21 +16,21 @@ public class CheckShenQuan implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (GameStart){
-            int countRed = checkPlayer(teamExecuter.getRedPlayer());
-            int countBlue = checkPlayer(teamExecuter.getBluePlayer());
+            int countRed = checkPlayer(teamExecuter.getPlayer(TeamExecuter.Team.RED));
+            int countBlue = checkPlayer(teamExecuter.getPlayer(TeamExecuter.Team.BLUE));
             if (countRed != 0){
                 ChatUtils.broadcast("#AQUA#经由玩家: %s 检测，#RED#神权红队#AQUA#玩家: %s 涉嫌Bypass本插件，犯下了 %d 项罪行，现给予处罚。"
-                , commandSender.getName(), teamExecuter.getRedPlayer().getName(), countRed);
-                teamExecuter.getRedPlayer().setHealth(0.5);
-                teamExecuter.getRedPlayer().setFoodLevel(0);
-                teamExecuter.getRedPlayer().teleport(teamExecuter.getBluePlayer());
+                , commandSender.getName(), teamExecuter.getPlayer(TeamExecuter.Team.RED).getName(), countRed);
+                teamExecuter.getPlayer(TeamExecuter.Team.RED).setHealth(0.5);
+                teamExecuter.getPlayer(TeamExecuter.Team.RED).setFoodLevel(0);
+                teamExecuter.getPlayer(TeamExecuter.Team.RED).teleport(teamExecuter.getPlayer(TeamExecuter.Team.BLUE));
             }
             if (countBlue != 0){
                 ChatUtils.broadcast("#AQUA#经由玩家: %s 检测，#BLUE#神权蓝队#AQUA#玩家: %s 涉嫌Bypass本插件，犯下了 %d 项罪行，现给予处罚。"
-                , commandSender.getName(), teamExecuter.getBluePlayer().getName(), countBlue);
-                teamExecuter.getBluePlayer().setHealth(0.5);
-                teamExecuter.getBluePlayer().setFoodLevel(0);
-                teamExecuter.getBluePlayer().teleport(teamExecuter.getRedPlayer());
+                , commandSender.getName(), teamExecuter.getPlayer(TeamExecuter.Team.BLUE).getName(), countBlue);
+                teamExecuter.getPlayer(TeamExecuter.Team.BLUE).setHealth(0.5);
+                teamExecuter.getPlayer(TeamExecuter.Team.BLUE).setFoodLevel(0);
+                teamExecuter.getPlayer(TeamExecuter.Team.BLUE).teleport(teamExecuter.getPlayer(TeamExecuter.Team.RED));
             }
             if (countRed == 0 && countBlue == 0){
                 ChatUtils.broadcast("#AQUA#没有人是神权狗");

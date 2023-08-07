@@ -1,6 +1,5 @@
 package top.mpt.huihui.highversionqwq.commands;
 
-import net.md_5.bungee.api.chat.SelectorComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -69,29 +68,29 @@ public class JoinTeam implements CommandExecutor {
         // 如果玩家要加入Red队伍
         if (strings[0].equalsIgnoreCase("red")){
             // 防止同一个玩家重复加入队伍
-            if (teamExecuter.getRedPlayer() != null && teamExecuter.getRedPlayer().equals(onJoinTeamPlayer)){
+            if (teamExecuter.getPlayer(TeamExecuter.Team.RED) != null && teamExecuter.getPlayer(TeamExecuter.Team.RED).equals(onJoinTeamPlayer)){
                 ChatUtils.broadcast("#RED#红队队员试图重复加入队伍制造Bug，公开ta的ID：#AQUA#%s", onJoinTeamPlayer.getName());
                 teamExecuter.showAllTeamMember();
                 return true;
             }
             // 不同玩家加入，但游戏未开始
-            else if (teamExecuter.getRedPlayer() != null && !HighVersionQWQ.GameStart){
+            else if (teamExecuter.getPlayer(TeamExecuter.Team.RED) != null && !HighVersionQWQ.GameStart){
                 ChatUtils.broadcast("#RED#检测到有两个玩家试图加入红队，已清除原先的红队玩家，现在的红队玩家是：%s", onJoinTeamPlayer.getName());
                 teamExecuter.removeRedPlayer();
             }
             // 不同玩家加入同一支队伍，但游戏已开始
-            else if (teamExecuter.getRedPlayer() != null && HighVersionQWQ.GameStart){
+            else if (teamExecuter.getPlayer(TeamExecuter.Team.RED) != null && HighVersionQWQ.GameStart){
                 ChatUtils.broadcast("#RED#有一个玩家试图在游戏开始后加入队伍，已拒绝ta的请求，该玩家ID为：#AQUA#%s", onJoinTeamPlayer.getName());
                 teamExecuter.showAllTeamMember();
                 return true;
             }
             // 如果该玩家原先为蓝队队员，叛变为红队队员(游戏未开始)
-            else if (teamExecuter.getBluePlayer() != null && teamExecuter.getBluePlayer().equals(onJoinTeamPlayer) && !HighVersionQWQ.GameStart){
+            else if (teamExecuter.getPlayer(TeamExecuter.Team.BLUE) != null && teamExecuter.getPlayer(TeamExecuter.Team.BLUE).equals(onJoinTeamPlayer) && !HighVersionQWQ.GameStart){
                 ChatUtils.broadcast("#GREEN#玩家：%s 试图从蓝队叛变至红队，由于游戏未开始，蓝队空出来了一个位置，等待加入。", onJoinTeamPlayer.getName());
                 teamExecuter.removeBluePlayer();
             }
             // 如果该玩家原先为蓝队队员，叛变为红队队员(游戏已开始)
-            else if (teamExecuter.getBluePlayer() != null && teamExecuter.getBluePlayer().equals(onJoinTeamPlayer)){
+            else if (teamExecuter.getPlayer(TeamExecuter.Team.BLUE) != null && teamExecuter.getPlayer(TeamExecuter.Team.BLUE).equals(onJoinTeamPlayer)){
                 ChatUtils.broadcast("#RED#玩家：%s 试图从蓝队叛变至红队，游戏已经开始，无法执行该操作。", onJoinTeamPlayer.getName());
                 teamExecuter.showAllTeamMember();
                 return true;
@@ -105,29 +104,29 @@ public class JoinTeam implements CommandExecutor {
         // 如果玩家要加入Blue队伍
         } else if (strings[0].equalsIgnoreCase("blue")){
             // 防止同一个玩家重复加入队伍
-            if (teamExecuter.getBluePlayer() != null && teamExecuter.getBluePlayer().equals(onJoinTeamPlayer)){
+            if (teamExecuter.getPlayer(TeamExecuter.Team.BLUE) != null && teamExecuter.getPlayer(TeamExecuter.Team.BLUE).equals(onJoinTeamPlayer)){
                 ChatUtils.broadcast("#BLUE#蓝队队员试图重复加入队伍制造Bug，公开ta的ID：#AQUA#%s", onJoinTeamPlayer.getName());
                 teamExecuter.showAllTeamMember();
                 return true;
             }
             // 不同玩家加入，但游戏未开始
-            else if (teamExecuter.getBluePlayer() != null && !HighVersionQWQ.GameStart){
+            else if (teamExecuter.getPlayer(TeamExecuter.Team.BLUE) != null && !HighVersionQWQ.GameStart){
                 ChatUtils.broadcast("#BLUE#检测到有两个玩家试图加入蓝队，已清除原先的蓝队玩家，现在的蓝队玩家是：%s", onJoinTeamPlayer.getName());
                 teamExecuter.removeRedPlayer();
             }
             // 不同玩家加入同一支队伍，但游戏已开始
-            else if (teamExecuter.getBluePlayer() != null && HighVersionQWQ.GameStart){
+            else if (teamExecuter.getPlayer(TeamExecuter.Team.BLUE) != null && HighVersionQWQ.GameStart){
                 ChatUtils.broadcast("#BLUE#有一个玩家试图在游戏开始后加入队伍，已拒绝ta的请求，该玩家ID为：#AQUA#%s", onJoinTeamPlayer.getName());
                 teamExecuter.showAllTeamMember();
                 return true;
             }
             // 如果该玩家原先为红队队员，叛变为蓝队队员(游戏未开始)
-            else if (teamExecuter.getRedPlayer() != null && teamExecuter.getRedPlayer().equals(onJoinTeamPlayer) && !HighVersionQWQ.GameStart){
+            else if (teamExecuter.getPlayer(TeamExecuter.Team.RED) != null && teamExecuter.getPlayer(TeamExecuter.Team.RED).equals(onJoinTeamPlayer) && !HighVersionQWQ.GameStart){
                 ChatUtils.broadcast("#GREEN#玩家：%s 试图从红队叛变至蓝队，由于游戏未开始，红队空出来了一个位置，等待加入。", onJoinTeamPlayer.getName());
                 teamExecuter.removeRedPlayer();
             }
             // 如果该玩家原先为红队队员，叛变为蓝队队员(游戏已开始)
-            else if (teamExecuter.getRedPlayer() != null && teamExecuter.getRedPlayer().equals(onJoinTeamPlayer)){
+            else if (teamExecuter.getPlayer(TeamExecuter.Team.RED) != null && teamExecuter.getPlayer(TeamExecuter.Team.RED).equals(onJoinTeamPlayer)){
                 ChatUtils.broadcast("#GREEN#玩家：%s 试图从红队叛变至蓝队，游戏已经开始，无法执行该操作。", onJoinTeamPlayer.getName());
                 teamExecuter.showAllTeamMember();
                 return true;
@@ -140,7 +139,7 @@ public class JoinTeam implements CommandExecutor {
             PlayerUtils.send(onJoinTeamPlayer, onJoinTeamPlayer.getName() + "#AQUA#加入队伍：#BLUE#Blue #GREEN#成功");
         }
         teamExecuter.showAllTeamMember();
-        if (teamExecuter.getRedPlayer() != null && teamExecuter.getBluePlayer() != null){
+        if (teamExecuter.getPlayer(TeamExecuter.Team.RED) != null && teamExecuter.getPlayer(TeamExecuter.Team.BLUE) != null){
             // 游戏开启
             HighVersionQWQ.GameStart = true;
             // 发布提示

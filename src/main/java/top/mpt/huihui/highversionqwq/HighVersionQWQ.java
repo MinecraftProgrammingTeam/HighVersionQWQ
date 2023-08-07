@@ -1,10 +1,7 @@
 package top.mpt.huihui.highversionqwq;
 
 import org.bukkit.plugin.java.JavaPlugin;
-import top.mpt.huihui.highversionqwq.commands.CheckShenQuan;
-import top.mpt.huihui.highversionqwq.commands.ClearBossbar;
-import top.mpt.huihui.highversionqwq.commands.JoinTeam;
-import top.mpt.huihui.highversionqwq.commands.LeaveTeam;
+import top.mpt.huihui.highversionqwq.commands.*;
 import top.mpt.huihui.highversionqwq.events.onCommandExecute;
 import top.mpt.huihui.highversionqwq.events.onPlayerDeath;
 import top.mpt.huihui.highversionqwq.events.onPlayerQuit;
@@ -18,6 +15,7 @@ public final class HighVersionQWQ extends JavaPlugin {
     public static String normal = "[PVP] ";
     public static TeamExecuter teamExecuter = new TeamExecuter();
     public static boolean GameStart = false;
+
     @Override
     public void onEnable() {
         System.out.println("MoonCC服务器特供插件装载完成");
@@ -26,6 +24,7 @@ public final class HighVersionQWQ extends JavaPlugin {
         Objects.requireNonNull(getCommand("clearbossbar")).setExecutor(new ClearBossbar());
         Objects.requireNonNull(getCommand("checkshenquan")).setExecutor(new CheckShenQuan());
         Objects.requireNonNull(getCommand("leaveteam")).setExecutor(new LeaveTeam());
+        Objects.requireNonNull(getCommand("checktaoyi")).setExecutor(new CheckTaoYi());
 
         getServer().getPluginManager().registerEvents(new onPlayerDeath(), this);
         getServer().getPluginManager().registerEvents(new onCommandExecute(), this);

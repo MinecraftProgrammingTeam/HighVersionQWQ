@@ -17,8 +17,8 @@ public class ShowBossBar {
     public BossBar BlueBossBar = null;
 
     public void createBossBar(){
-        Player RedPlayer = teamExecuter.getRedPlayer();
-        Player BluePlayer = teamExecuter.getBluePlayer();
+        Player RedPlayer = teamExecuter.getPlayer(TeamExecuter.Team.RED);
+        Player BluePlayer = teamExecuter.getPlayer(TeamExecuter.Team.BLUE);
         RedBossBar = Bukkit.createBossBar(RedPlayer.getName(), BarColor.RED, BarStyle.SEGMENTED_6);
         BlueBossBar = Bukkit.createBossBar(BluePlayer.getName(), BarColor.BLUE, BarStyle.SEGMENTED_6);
         RedBossBar.removeAll();
