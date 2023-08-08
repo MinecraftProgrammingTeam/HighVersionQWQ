@@ -5,7 +5,7 @@ import top.mpt.huihui.highversionqwq.commands.*;
 import top.mpt.huihui.highversionqwq.events.onCommandExecute;
 import top.mpt.huihui.highversionqwq.events.onPlayerDeath;
 import top.mpt.huihui.highversionqwq.events.onPlayerQuit;
-import top.mpt.huihui.highversionqwq.team.TeamExecuter;
+import top.mpt.huihui.highversionqwq.team.TeamExecutor;
 
 import java.util.Objects;
 
@@ -13,7 +13,7 @@ public final class HighVersionQWQ extends JavaPlugin {
 
     public static HighVersionQWQ instance;
     public static String normal = "[PVP] ";
-    public static TeamExecuter teamExecuter = new TeamExecuter();
+    public static TeamExecutor teamExecutor = new TeamExecutor();
     public static boolean GameStart = false;
 
     @Override

@@ -7,18 +7,18 @@ import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import top.mpt.huihui.highversionqwq.HighVersionQWQ;
-import top.mpt.huihui.highversionqwq.team.TeamExecuter;
+import top.mpt.huihui.highversionqwq.team.TeamExecutor;
 import top.mpt.huihui.highversionqwq.utils.LogUtils;
 
 // 给玩家显示对面的血量BossBar
 public class ShowBossBar {
-    private final TeamExecuter teamExecuter = HighVersionQWQ.teamExecuter;
+    private final TeamExecutor teamExecutor = HighVersionQWQ.teamExecutor;
     public BossBar RedBossBar = null;
     public BossBar BlueBossBar = null;
 
     public void createBossBar(){
-        Player RedPlayer = teamExecuter.getPlayer(TeamExecuter.Team.RED);
-        Player BluePlayer = teamExecuter.getPlayer(TeamExecuter.Team.BLUE);
+        Player RedPlayer = teamExecutor.getPlayer(TeamExecutor.Team.RED);
+        Player BluePlayer = teamExecutor.getPlayer(TeamExecutor.Team.BLUE);
         RedBossBar = Bukkit.createBossBar(RedPlayer.getName(), BarColor.RED, BarStyle.SEGMENTED_6);
         BlueBossBar = Bukkit.createBossBar(BluePlayer.getName(), BarColor.BLUE, BarStyle.SEGMENTED_6);
         RedBossBar.removeAll();

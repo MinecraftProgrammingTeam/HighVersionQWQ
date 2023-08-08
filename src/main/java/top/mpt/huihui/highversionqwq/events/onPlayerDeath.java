@@ -5,7 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import top.mpt.huihui.highversionqwq.HighVersionQWQ;
-import top.mpt.huihui.highversionqwq.team.TeamExecuter;
+import top.mpt.huihui.highversionqwq.team.TeamExecutor;
 import top.mpt.huihui.highversionqwq.utils.ChatUtils;
 import top.mpt.huihui.highversionqwq.utils.PlayerUtils;
 
@@ -18,23 +18,23 @@ public class onPlayerDeath implements Listener {
         // 拿到死亡玩家
         Player onDeathPlayer = event.getEntity();
         // 设置变量
-        TeamExecuter teamExecuter = HighVersionQWQ.teamExecuter;
+        TeamExecutor teamExecutor = HighVersionQWQ.teamExecutor;
         // 判断玩家是否是PVP战死
-        if (onDeathPlayer.equals(teamExecuter.getPlayer(TeamExecuter.Team.RED)) || onDeathPlayer.equals(teamExecuter.getPlayer(TeamExecuter.Team.BLUE))){
+        if (onDeathPlayer.equals(teamExecutor.getPlayer(TeamExecutor.Team.RED)) || onDeathPlayer.equals(teamExecutor.getPlayer(TeamExecutor.Team.BLUE))){
             // 结束游戏
             HighVersionQWQ.GameStart = false;
             // 显示标题
             PlayerUtils.showTitle(onDeathPlayer, "#GRAY#别气馁，没准下次就赢了呢？", "");
-            if (onDeathPlayer.equals(teamExecuter.getPlayer(TeamExecuter.Team.RED))) {
-                ChatUtils.broadcast("#GOLD#恭喜玩家：#AQUA#%s #GOLD#赢得了本次#GREEN#PVP比赛#GOLD#的胜利", teamExecuter.getPlayer(TeamExecuter.Team.BLUE).getName());
-                PlayerUtils.showTitle(teamExecuter.getPlayer(TeamExecuter.Team.BLUE), "#GREEN#恭喜您获得本场比赛的胜利！", "");
+            if (onDeathPlayer.equals(teamExecutor.getPlayer(TeamExecutor.Team.RED))) {
+                ChatUtils.broadcast("#GOLD#恭喜玩家：#AQUA#%s #GOLD#赢得了本次#GREEN#PVP比赛#GOLD#的胜利", teamExecutor.getPlayer(TeamExecutor.Team.BLUE).getName());
+                PlayerUtils.showTitle(teamExecutor.getPlayer(TeamExecutor.Team.BLUE), "#GREEN#恭喜您获得本场比赛的胜利！", "");
             } else {
-                ChatUtils.broadcast("#GOLD#恭喜玩家：#AQUA#%s #GOLD#赢得了本次#GREEN#PVP比赛#GOLD#的胜利", teamExecuter.getPlayer(TeamExecuter.Team.RED).getName());
-                PlayerUtils.showTitle(teamExecuter.getPlayer(TeamExecuter.Team.RED), "#GREEN#恭喜您获得本场比赛的胜利！", "");
+                ChatUtils.broadcast("#GOLD#恭喜玩家：#AQUA#%s #GOLD#赢得了本次#GREEN#PVP比赛#GOLD#的胜利", teamExecutor.getPlayer(TeamExecutor.Team.RED).getName());
+                PlayerUtils.showTitle(teamExecutor.getPlayer(TeamExecutor.Team.RED), "#GREEN#恭喜您获得本场比赛的胜利！", "");
             }
             // 清除队伍
-            teamExecuter.removeRedPlayer();
-            teamExecuter.removeBluePlayer();
+            teamExecutor.removeRedPlayer();
+            teamExecutor.removeBluePlayer();
 
         }
     }

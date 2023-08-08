@@ -15,3 +15,6 @@ commands:
   leaveteam:
     description: PVP插件 -- 离开队伍
     usage: /leaveteam [PlayerName]
+  checktaoyi:
+    description: PVP插件 -- 检查对面有没有陶艺
+    usage: /checktaoyi
