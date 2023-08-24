@@ -19,7 +19,7 @@ public class LeaveTeam implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (strings.length != 0 && strings[0].contains("@")){
-            List<Entity> selectEntities = Bukkit.selectEntities(commandSender, strings[1]);
+            List<Entity> selectEntities = Bukkit.selectEntities(commandSender, strings[0]);
             // 判断格式
             if (selectEntities.toArray().length != 1){
                 PlayerUtils.send(commandSender, "#RED#所给选择器目标不明确，请给一个目标明确的选择器。");
@@ -33,31 +33,36 @@ public class LeaveTeam implements CommandExecutor {
                 return true;
             }
         }
-        if (commandSender instanceof Player){
+        if (!(commandSender instanceof Player)){
             PlayerUtils.send(commandSender, "#AQUA#检测到您非玩家，请选定一个玩家再执行此指令。");
             return true;
         }
         if (GameStart){
             if (commandSender.equals(teamExecutor.getPlayer(TeamExecutor.Team.BLUE))){
-                ChatUtils.broadcast("#BLUE#蓝队#GREEN#玩家: %s 试图在比赛开始时离开队伍，已拒绝其请求。", command.getName());
+                ChatUtils.broadcast("#BLUE#蓝队#GREEN#玩家: %s 试图在比赛开始时离开队伍，已拒绝其请求。", commandSender.getName());
                 return true;
             }
             else {
-                ChatUtils.broadcast("#RED#红队#GREEN#玩家: %s 试图在比赛开始时离开队伍，已拒绝其请求。", command.getName());
+                ChatUtils.broadcast("#RED#红队#GREEN#玩家: %s 试图在比赛开始时离开队伍，已拒绝其请求。", commandSender.getName());
                 return true;
             }
 
         }
         else {
+            if (teamExecutor.getPlayersTeam((Player) commandSender) == TeamExecutor.Team.NONE)
+            {
+                PlayerUtils.send(commandSender, "#AQUA#您并不属于任何团队，无法执行退出操作");
+                return true;
+            }
             if (commandSender.equals(teamExecutor.getPlayer(TeamExecutor.Team.BLUE))){
-                ChatUtils.broadcast("#BLUE#蓝队#GREEN#玩家: %s 请求离开队伍，已认可其请求。", command.getName());
+                ChatUtils.broadcast("#BLUE#蓝队#GREEN#玩家: %s 请求离开队伍，已认可其请求。", commandSender.getName());
                 teamExecutor.removeBluePlayer();
                 teamExecutor.showAllTeamMember();
                 return true;
             }
             else {
-                ChatUtils.broadcast("#RED#红队#GREEN#玩家: %s 请求离开队伍，已认可其请求。", command.getName());
-                teamExecutor.removeBluePlayer();
+                ChatUtils.broadcast("#RED#红队#GREEN#玩家: %s 请求离开队伍，已认可其请求。", commandSender.getName());
+                teamExecutor.removeRedPlayer();
                 teamExecutor.showAllTeamMember();
                 return true;
             }
