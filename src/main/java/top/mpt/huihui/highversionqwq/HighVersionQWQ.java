@@ -20,15 +20,17 @@ public final class HighVersionQWQ extends JavaPlugin {
     public void onEnable() {
         System.out.println("MoonCC服务器特供插件装载完成");
         instance = this;
-        Objects.requireNonNull(getCommand("jointeam")).setExecutor(new JoinTeam());
-        Objects.requireNonNull(getCommand("clearbossbar")).setExecutor(new ClearBossbar());
-        Objects.requireNonNull(getCommand("checkshenquan")).setExecutor(new CheckShenQuan());
-        Objects.requireNonNull(getCommand("leaveteam")).setExecutor(new LeaveTeam());
-        Objects.requireNonNull(getCommand("checktaoyi")).setExecutor(new CheckTaoYi());
+        this.getConfig().options().copyDefaults();
+        this.saveDefaultConfig();
+        Objects.requireNonNull(this.getCommand("jointeam")).setExecutor(new JoinTeam());
+        Objects.requireNonNull(this.getCommand("clearbossbar")).setExecutor(new ClearBossbar());
+        Objects.requireNonNull(this.getCommand("checkshenquan")).setExecutor(new CheckShenQuan());
+        Objects.requireNonNull(this.getCommand("leaveteam")).setExecutor(new LeaveTeam());
+        Objects.requireNonNull(this.getCommand("checktaoyi")).setExecutor(new CheckTaoYi());
 
-        getServer().getPluginManager().registerEvents(new onPlayerDeath(), this);
-        getServer().getPluginManager().registerEvents(new onCommandExecute(), this);
-        getServer().getPluginManager().registerEvents(new onPlayerQuit(), this);
+        this.getServer().getPluginManager().registerEvents(new onPlayerDeath(), this);
+        this.getServer().getPluginManager().registerEvents(new onCommandExecute(), this);
+        this.getServer().getPluginManager().registerEvents(new onPlayerQuit(), this);
     }
 
     @Override

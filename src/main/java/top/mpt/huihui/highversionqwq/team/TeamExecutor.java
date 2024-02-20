@@ -14,12 +14,12 @@ import java.util.Map;
 public class TeamExecutor {
     private final Map<Team,Player> teamPlayerMap = new HashMap<>();
     private final Map<Team, Location> startGameLocation = new HashMap<>();
-    public void JoinRed(Player onJoinPlayer){
+    public void joinRed(Player onJoinPlayer){
         this.teamPlayerMap.put(TeamExecutor.Team.RED,onJoinPlayer);
         startGameLocation.put(Team.RED,onJoinPlayer.getLocation());
     }
 
-    public void JoinBlue(Player onJoinPlayer){
+    public void joinBlue(Player onJoinPlayer){
         this.teamPlayerMap.put(TeamExecutor.Team.BLUE,onJoinPlayer);
         startGameLocation.put(Team.BLUE,onJoinPlayer.getLocation());
     }
