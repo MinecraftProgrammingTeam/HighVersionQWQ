@@ -96,7 +96,7 @@ public class JoinTeam implements CommandExecutor {
                 return true;
             }
             // 让玩家加入红队
-            TEAM_EXECUTOR.JoinRed(onJoinTeamPlayer);
+            TEAM_EXECUTOR.joinRed(onJoinTeamPlayer);
             // 设置玩家背包
             setItems(onJoinTeamPlayer);
             // 给玩家发送消息
@@ -132,7 +132,7 @@ public class JoinTeam implements CommandExecutor {
                 return true;
             }
             // 让玩家加入蓝队
-            TEAM_EXECUTOR.JoinBlue(onJoinTeamPlayer);
+            TEAM_EXECUTOR.joinBlue(onJoinTeamPlayer);
             // 设置玩家背包
             setItems(onJoinTeamPlayer);
             // 给玩家发送消息
