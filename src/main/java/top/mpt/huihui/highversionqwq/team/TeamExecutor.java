@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 /**
  * 处理玩家队伍
- * @author X_huihui
+ * @author X_huihui、Y0uM
  */
 public class TeamExecutor {
     private final Map<Team,Player> teamPlayerMap = new HashMap<>();

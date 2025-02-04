@@ -24,9 +24,8 @@ public class CheckTaoYi implements CommandExecutor {
             return false;
         }
         return checkDistance(teamExecutor.getPlayersTeam((Player) commandSender),30,(team, result)-> {
-            if(result){
+            if (result){
                 teamExecutor.getPlayer(team).setHealth(0);
-                commandSender.sendMessage("检测到玩家逃逸,自动为您击杀");
                 ChatUtils.broadcast("玩家: %s 距离自己开始的区域超过了30格，检测为陶艺，已将其击毙。");
             } else {
                 commandSender.sendMessage("未检测玩家逃逸,请重试");
